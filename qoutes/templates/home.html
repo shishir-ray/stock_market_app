@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+	
+{% block content %}
+	{% if ticker %}
+		{{ ticker }}
+	{% endif %}
+	<br >
+	{% if api %}
+		{% if api == "Error..." %}
+			there is a problem
+		{% else %}
+			<h1>{{ api.companyName }}</h1><br>
+			Price: ${{ api.latestPrice }}<br>
+			Previous Cap: {{ api.previousClose }}<br>
+			Market Cap: {{ api.marketCap }}<br>
+			YTD Change: {{ api.ytdChange }}<br>
+			52 WK High: {{ api.week52High }}<br>
+			52 Wk Low: {{ api.week52Low }}<br>
+			{{ api}}<br>
+			
+			{% comment %}
+			{% for key, value in api.items %}
+				{{ key }} : {{ value }}<br />
+			{% endfor %}
+			{% endcomment %}
+		{% endif %}
+	{% endif %}
+
+{% endblock %}

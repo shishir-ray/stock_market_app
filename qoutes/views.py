@@ -51,6 +51,12 @@ def delete(request, stock_id):
 	item = stock.objects.get(pk=stock_id)
 	item.delete()
 	messages.success(request,"Stock has been deleted!")
+	return redirect('addstock')
+
+def deletes(request, stock_id):
+	item = stock.objects.get(pk=stock_id)
+	item.delete()
+	messages.success(request,"Stock has been deleted!")
 	return redirect('deletestock')
 
 def delete_stock(request):

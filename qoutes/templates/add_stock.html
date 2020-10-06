@@ -8,9 +8,7 @@
     <button class="btn btn-primary my-2 my-sm-0 " type="submit">Add Stock</button>
 </form>
 <br /><br /><br /><br />
-<div class="container">
-    <div class="row">
-        <div class="col-10">
+
             <table class="table table-bordered table-hover">
                 <thead class="thead-primary bg-primary">
                     <tr>
@@ -21,6 +19,7 @@
                         <th scope="col">YTD Change</th>
                         <th scope="col">52 WK High</th>
                         <th scope="col">52 WK Low</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,12 +33,23 @@
                         <td>{{ list_item.ytdChange }}</td>
                         <td>{{ list_item.week52High }}</td>
                         <td>{{ list_item.week52Low }}</td>
+                        
+		                    {% for item in ticker %}
+		                    	{% if forloop.counter == forloop.parentloop.counter %}
+		                    		
+				                    
+				                    <td><a href="{% url 'delete' item.id %}"><button class="btn btn-primary ">Delete {{ item }}</button></a></td>
+				                    
+		                    	{% endif %}
+		                    {% endfor %}
+                        
                     </tr>
                     {% endfor %}
                     {% endif %}
                 </tbody>
             </table>
-        </div>
+       
+{% comment %}
         <div class="col-2">
             <table class="table table-bordered table-hover">
                 <thead class="thead-primary bg-primary">
@@ -60,7 +70,6 @@
         </div>
     </div>
 </div>
-{% endblock %}
-{% comment %}
 {% url 'delete' item.id %}
 {% endcomment %}
+{% endblock %}
